@@ -39,6 +39,7 @@ export const Main = function () {
 	const [selectedMake, setSelectedMake] = useState('')
 	const [selectedModel, setSelectedModel] = useState('')
 	const [all, setAll] = useState('')
+	const [flag, setFlag] = useState(false)
 	useEffect(() => {}, [])
 	const searchPhone = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (phone !== '' && phone !== '6479887765') message.error('No such user')
@@ -174,6 +175,7 @@ export const Main = function () {
 											return
 										} else {
 											setDisplay(true)
+											setFlag(true)
 										}
 									}}
 								>
@@ -230,9 +232,11 @@ export const Main = function () {
 											message.error('Please enter your phone number')
 											return
 										}
-										if (all === '') {
-											message.error('Please select your vehicle model')
-											return
+										if (!flag) {
+											if (all === '') {
+												message.error('Please select your vehicle model')
+												return
+											}
 										}
 										setNextPage(true)
 									}}
